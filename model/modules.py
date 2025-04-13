@@ -57,8 +57,27 @@ class SA(nn.Module):
 class MultiheadAttention(nn.Module):
     """ multihead Attention"""
 
-    def __init__(self, num_head):
+    def __init__(self, input, num_head):
         super().__init__()
+
+        self.num_head = num_head
+
+        self.q_proj = nn.Linear(input, ouput)
+        self.k_proj = nn.Linear(input, ouput)
+        self.v_proj = nn.Linear(input, ouput)
+
+    def forward(self, x):
+
+        B, N, D = x.shape
+
+        qkv = self.U_msa(x)
+        q, k, v = qkv.chunk(self.num_head, dim=-1)
+
+        Attention = F.softmax(q @ k.transpose(-2, -1) / (D**0.5))
+
+        SAout = Attention@v
+
+        return SAout
 
 
 class TransformerEncoder(nn.Module):
