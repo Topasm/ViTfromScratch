@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from einops import rearrange
+
+"https://data-analysis-science.tistory.com/50 einops example"
 
 
 class EncoderMLP(nn.Module):
@@ -115,3 +118,6 @@ every block, and residual connections after every block """
         x_out = x_out + x_update
 
         return x_out
+
+
+class PatchEmbedding(nn.Module):
