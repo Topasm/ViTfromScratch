@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from modules import TransformerEncoder, ClassificationHeadMLP
+from .modules import TransformerEncoder, ClassificationHeadMLP
 
 
 class Vit(nn.Module):

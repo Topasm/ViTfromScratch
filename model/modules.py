@@ -121,3 +121,25 @@ every block, and residual connections after every block """
 
 
 class PatchEmbedding(nn.Module):
+
+    """To handle 2D images, we reshape the image x ∈ RH×W ×C into a
+sequence of flattened 2D patches xp ∈ RN×(P 2·C), where (H,W) is the resolution of the original
+image, C is the number of channels, (P,P) is the resolution of each image patch, and N = HW/P2
+is the resulting number of patches, which also serves as the effective input sequence length for the
+Transformer. The Transformer uses constant latent vector size D through all of its layers, so we
+flatten the patches and map to D dimensions with a trainable linear projection (Eq. 1). We refer to
+the output of this projection as the patch embeddings"""
+
+    def __init__(self, input_dim, num_head, patch_size):
+        super().__init__()
+        self.patchfy = nn.Conv2d(input_dim, outm,)
+
+    def forward(self, x):
+
+        B, C, H, W = x.shape
+
+        patch = self.patchfy(x)  # n p^2xc
+
+        x = rearrange(x, 'b c h w -> b ')
+
+        return out
