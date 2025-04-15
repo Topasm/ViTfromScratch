@@ -7,7 +7,7 @@ class Vit(nn.Module):
 
     """ViT-Base Layer 12  Hidden size 768 MLP 3072 Head 12 86M"""
 
-    def __init__(self, input_dim=768, num_head=12, num_patch=256, num_class=10, patch_size=16):
+    def __init__(self, input_dim=768, num_head=12, num_patch=196, num_class=10, patch_size=16):
         super().__init__()
 
         self.patch_embedding = PatchEmbedding(
@@ -25,11 +25,20 @@ class Vit(nn.Module):
 
     def forward(self, x):
 
-        x = self.patch_embedding(x)
-        # TODO fix RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 1024 but got size 1 for tensor number 1 in the list.
-        x_cls = torch.concat([x, self.cls], dim=1)
+        # torch.Size([1024, 3, 224, 224]) -Based on figure it should 224x224
+        B, _, _, _ = x.shape
 
-        x_pose = x_cls + self.pose_embedding
+        x = self.patch_embedding(x)
+
+        # torch.Size([1024, 196, 768])(patch 14x14=196)
+
+        cls_token = self.cls.expand(B, -1, -1)
+
+        # torch.Size([1024, 197, 768])
+
+        x_cls = torch.concat([x, cls_token], dim=1)
+
+        x_pose = x_cls + self.pose_embedding()
 
         x_t_out = self.Transformer(x_pose)
 

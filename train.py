@@ -11,9 +11,10 @@ path = './cifar_vit.pth'
 
 "https://tutorials.pytorch.kr/beginner/basics/data_tutorial.html"
 "https://tutorials.pytorch.kr/beginner/blitz/cifar10_tutorial.html"
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+transform = transforms.Compose([
+    transforms.Resize(224, interpolation=2),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 batch_size = 1024
 
