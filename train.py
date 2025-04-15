@@ -16,7 +16,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-batch_size = 128
+batch_size = 256
 
 trainset = datasets.CIFAR10(root='./data', train=True,
                             download=True, transform=transform)
@@ -43,7 +43,7 @@ def train():
     """We train all models, including ResNets, using Adam (Kingma & Ba,
 2015) with β1 = 0.9, β2 = 0.999, a batch size of 4096 and apply a high weight decay of 0.1, """
 
-    for epoch in range(10):
+    for epoch in range(50):
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
 

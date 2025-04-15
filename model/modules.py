@@ -30,12 +30,17 @@ class ClassificationHeadMLP(nn.Module):
     """MLP Head for Classification
     4p 3.1 section 
     The classification head is implemented by a MLP with one hidden layer at pre-training
-    time and by a single linear layer at fine-tuning time"""
+    time and by a single linear layer at fine-tuning time
+
+    The output of this token is then trans-
+formed into a class prediction via a small multi-layer perceptron (MLP) with tanh as non-linearity
+in the single hidden layer."""
 
     def __init__(self, inputdim, outdim):
         super().__init__()
-        self.mlp = nn.Sequential(nn.Linear(inputdim, outdim),
-                                 nn.ReLU())
+        self.mlp = nn.Sequential(nn.Linear(inputdim, inputdim),
+                                 nn.Tanh(),
+                                 nn.Linear(inputdim, outdim),)
 
     def forward(self, x):
         x = self.mlp(x)
