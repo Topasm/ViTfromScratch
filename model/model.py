@@ -36,9 +36,13 @@ class Vit(nn.Module):
 
         # torch.Size([1024, 197, 768])
 
-        x_cls = torch.concat([x, cls_token], dim=1)
+        B, T, E = cls_token.shape
 
-        x_pose = x_cls + self.pose_embedding()
+        x_cls = torch.cat([x, cls_token], dim=1)
+
+        pose_embed = self.pose_embedding(torch.arange(0, T, device=x.device))
+
+        x_pose = x_cls + pose_embed
 
         x_t_out = self.Transformer(x_pose)
 
