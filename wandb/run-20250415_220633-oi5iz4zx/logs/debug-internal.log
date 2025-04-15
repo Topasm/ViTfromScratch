@@ -1,0 +1,7 @@
+{"time":"2025-04-15T22:06:34.011560011+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/ahrilab/Desktop/ViTfromScratch/wandb/run-20250415_220633-oi5iz4zx/logs/debug-core.log"}
+{"time":"2025-04-15T22:06:34.115401672+09:00","level":"INFO","msg":"created new stream","id":"oi5iz4zx"}
+{"time":"2025-04-15T22:06:34.115443067+09:00","level":"INFO","msg":"stream: started","id":"oi5iz4zx"}
+{"time":"2025-04-15T22:06:34.115625045+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"oi5iz4zx"}
+{"time":"2025-04-15T22:06:34.115743159+09:00","level":"INFO","msg":"sender: started","stream_id":"oi5iz4zx"}
+{"time":"2025-04-15T22:06:34.115941238+09:00","level":"INFO","msg":"handler: started","stream_id":"oi5iz4zx"}
+{"time":"2025-04-15T22:06:34.564606016+09:00","level":"INFO","msg":"Starting system monitor"}

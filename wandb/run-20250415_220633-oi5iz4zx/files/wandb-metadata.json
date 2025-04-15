@@ -1,0 +1,42 @@
+{
+  "os": "Linux-6.8.0-57-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.16",
+  "startedAt": "2025-04-15T13:06:34.005723Z",
+  "program": "/home/ahrilab/Desktop/ViTfromScratch/train.py",
+  "codePath": "train.py",
+  "git": {
+    "remote": "https://github.com/Topasm/ViTfromScratch.git",
+    "commit": "7b59a49eeb9017ffe079a31eac48c241ff3c22a5"
+  },
+  "email": "dhkdwk0215@naver.com",
+  "root": "/home/ahrilab/Desktop/ViTfromScratch",
+  "host": "ahrilab-MS-7E01",
+  "executable": "/home/ahrilab/anaconda3/envs/rss/bin/python",
+  "codePathLocal": "train.py",
+  "cpu_count": 24,
+  "cpu_count_logical": 32,
+  "gpu": "NVIDIA RTX A6000",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "1030963863552",
+      "used": "879546724352"
+    }
+  },
+  "memory": {
+    "total": "67182080000"
+  },
+  "cpu": {
+    "count": 24,
+    "countLogical": 32
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.8"
+}

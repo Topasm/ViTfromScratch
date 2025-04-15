@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/ahrilab/Desktop/ViTfromScratch/train.py", line 79, in <module>
+    main()
+  File "/home/ahrilab/Desktop/ViTfromScratch/train.py", line 75, in main
+    train()
+  File "/home/ahrilab/Desktop/ViTfromScratch/train.py", line 41, in train
+    model = Vit(**configs).to(device)
+  File "/home/ahrilab/Desktop/ViTfromScratch/model/model.py", line 20, in __init__
+    self.Transformer = nn.Sequential(*[TransformerEncoder(
+  File "/home/ahrilab/Desktop/ViTfromScratch/model/model.py", line 20, in <listcomp>
+    self.Transformer = nn.Sequential(*[TransformerEncoder(
+  File "/home/ahrilab/Desktop/ViTfromScratch/model/modules.py", line 127, in __init__
+    self.mlp = EncoderMLP(input_dim, input_dim)
+TypeError: EncoderMLP.__init__() takes 2 positional arguments but 3 were given

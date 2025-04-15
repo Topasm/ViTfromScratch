@@ -1,0 +1,15 @@
+{"time":"2025-04-15T22:05:56.644907441+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/ahrilab/Desktop/ViTfromScratch/wandb/run-20250415_220556-knceyp5s/logs/debug-core.log"}
+{"time":"2025-04-15T22:05:56.751986021+09:00","level":"INFO","msg":"created new stream","id":"knceyp5s"}
+{"time":"2025-04-15T22:05:56.752024088+09:00","level":"INFO","msg":"stream: started","id":"knceyp5s"}
+{"time":"2025-04-15T22:05:56.75216028+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"knceyp5s"}
+{"time":"2025-04-15T22:05:56.752220539+09:00","level":"INFO","msg":"handler: started","stream_id":"knceyp5s"}
+{"time":"2025-04-15T22:05:56.752325962+09:00","level":"INFO","msg":"sender: started","stream_id":"knceyp5s"}
+{"time":"2025-04-15T22:05:57.228399017+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-15T22:05:57.339427123+09:00","level":"INFO","msg":"stream: closing","id":"knceyp5s"}
+{"time":"2025-04-15T22:05:57.339519521+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-15T22:05:57.340629731+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-15T22:05:59.284225012+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-15T22:05:59.664836515+09:00","level":"INFO","msg":"handler: closed","stream_id":"knceyp5s"}
+{"time":"2025-04-15T22:05:59.664878297+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"knceyp5s"}
+{"time":"2025-04-15T22:05:59.66491081+09:00","level":"INFO","msg":"sender: closed","stream_id":"knceyp5s"}
+{"time":"2025-04-15T22:05:59.664940484+09:00","level":"INFO","msg":"stream: closed","id":"knceyp5s"}

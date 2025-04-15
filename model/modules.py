@@ -124,7 +124,7 @@ every block, and residual connections after every block """
         self.norm1 = nn.LayerNorm(input_dim)
         self.mha = MultiheadAttention(input_dim, num_head=num_head)
         self.norm2 = nn.LayerNorm(input_dim)
-        self.mlp = EncoderMLP(input_dim, input_dim)
+        self.mlp = EncoderMLP(input_dim)
 
     def forward(self, x):
         x_norm = self.norm1(x)

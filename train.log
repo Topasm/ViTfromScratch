@@ -1,0 +1,9 @@
+nohup: ignoring input
+wandb: Currently logged in as: dhkdwk0215 (topasm). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/ahrilab/Desktop/ViTfromScratch/wandb/run-20250415_220633-oi5iz4zx
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run happy-sponge-3
+wandb: ⭐️ View project at https://wandb.ai/topasm/vit_fromscratch
+wandb: 🚀 View run at https://wandb.ai/topasm/vit_fromscratch/runs/oi5iz4zx
