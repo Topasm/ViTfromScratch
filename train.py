@@ -48,6 +48,7 @@ def train():
         for i, data in enumerate(trainloader, 0):
 
             inputs, lables = data
+            inputs, lables = inputs.to(device), lables.to(device)
 
             optimizer.zero_grad()
             outputs = model(inputs)

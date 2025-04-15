@@ -1,14 +1,17 @@
 import torch
 import torch.nn as nn
-from .modules import TransformerEncoder, ClassificationHeadMLP
+from .modules import TransformerEncoder, ClassificationHeadMLP, PatchEmbedding
 
 
 class Vit(nn.Module):
 
     """ViT-Base Layer 12  Hidden size 768 MLP 3072 Head 12 86M"""
 
-    def __init__(self, input_dim=768, num_head=12, num_patch=256, num_class=10):
+    def __init__(self, input_dim=768, num_head=12, num_patch=256, num_class=10, patch_size=16):
         super().__init__()
+
+        self.patch_embedding = PatchEmbedding(
+            3, embedded_dim=input_dim, patch_size=patch_size)
         # https://velog.io/@dusruddl2/torch.rand-torch.randn
         self.cls = nn.Parameter(torch.randn(1, 1, input_dim))
 
@@ -21,6 +24,8 @@ class Vit(nn.Module):
             inputdim=input_dim, outdim=num_class)
 
     def forward(self, x):
+
+        x = self.patch_embedding(x)
 
         x_cls = torch.concat([x, self.cls], dim=1)
 

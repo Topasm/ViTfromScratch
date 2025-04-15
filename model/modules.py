@@ -75,7 +75,7 @@ class MultiheadAttention(nn.Module):
         self.k_proj = nn.Linear(embedded_dim, embedded_dim)
         self.v_proj = nn.Linear(embedded_dim, embedded_dim)
 
-        self.output_proj = nn.Linear()
+        self.output_proj = nn.Linear(embedded_dim, embedded_dim)
 
     def forward(self, x):
 
