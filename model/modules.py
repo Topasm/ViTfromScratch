@@ -18,7 +18,7 @@ class EncoderMLP(nn.Module):
         self.mlp = nn.Sequential(nn.Linear(inputdim, hiddendim),
                                  nn.GELU(),
                                  nn.Linear(hiddendim, hiddendim),
-                                 nn.GELU)
+                                 nn.GELU())
 
     def forward(self, x):
         x = self.mlp(x)
@@ -39,6 +39,7 @@ class ClassificationHeadMLP(nn.Module):
 
     def forward(self, x):
         x = self.mlp(x)
+        return x
 
 
 class SA(nn.Module):
@@ -104,9 +105,9 @@ every block, and residual connections after every block """
 
     def __init__(self, input_dim, num_head):
         super().__init__()
-        self.norm1 = nn.LayerNorm(num_groups=32, num_channels=3)
+        self.norm1 = nn.LayerNorm(input_dim)
         self.mha = MultiheadAttention(input_dim, num_head=num_head)
-        self.norm2 = nn.LayerNorm(num_groups=32, num_channels=3)
+        self.norm2 = nn.LayerNorm(input_dim)
         self.mlp = EncoderMLP(input_dim, input_dim)
 
     def forward(self, x):
@@ -130,9 +131,10 @@ Transformer. The Transformer uses constant latent vector size D through all of i
 flatten the patches and map to D dimensions with a trainable linear projection (Eq. 1). We refer to
 the output of this projection as the patch embeddings"""
 
-    def __init__(self, input_dim, num_head, patch_size):
+    def __init__(self, input_dim, embedded_dim, patch_size):
         super().__init__()
-        self.patchfy = nn.Conv2d(input_dim, outm,)
+        self.patchfy = nn.Conv2d(
+            input_dim, embedded_dim, kernel_size=patch_size, stride=patch_size)
 
     def forward(self, x):
 
@@ -140,6 +142,6 @@ the output of this projection as the patch embeddings"""
 
         patch = self.patchfy(x)  # n p^2xc
 
-        x = rearrange(x, 'b c h w -> b ')
+        out = rearrange(x, 'b d ph pw -> b (ph pw) d')
 
         return out
