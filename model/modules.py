@@ -142,6 +142,6 @@ the output of this projection as the patch embeddings"""
 
         patch = self.patchfy(x)  # n p^2xc
 
-        out = rearrange(x, 'b d ph pw -> b (ph pw) d')
+        out = rearrange(patch, 'b d ph pw -> b (ph pw) d')
 
         return out
