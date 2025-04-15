@@ -1,0 +1,11 @@
+{"time":"2025-04-15T21:41:46.511973007+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/ahrilab/Desktop/ViTfromScratch/wandb/run-20250415_214146-dlequgvz/logs/debug-core.log"}
+{"time":"2025-04-15T21:41:46.621307638+09:00","level":"INFO","msg":"created new stream","id":"dlequgvz"}
+{"time":"2025-04-15T21:41:46.621371255+09:00","level":"INFO","msg":"stream: started","id":"dlequgvz"}
+{"time":"2025-04-15T21:41:46.62168325+09:00","level":"INFO","msg":"handler: started","stream_id":"dlequgvz"}
+{"time":"2025-04-15T21:41:46.622682047+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"dlequgvz"}
+{"time":"2025-04-15T21:41:46.623363184+09:00","level":"INFO","msg":"sender: started","stream_id":"dlequgvz"}
+{"time":"2025-04-15T21:41:47.283407566+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-15T21:45:45.731276688+09:00","level":"INFO","msg":"stream: closing","id":"dlequgvz"}
+{"time":"2025-04-15T21:45:45.731286383+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-15T21:45:45.731611103+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-15T21:45:47.348696259+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}

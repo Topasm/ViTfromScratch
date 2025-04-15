@@ -1,0 +1,9 @@
+Epoch [1/100 - Loss: 2.1741767756792965]
+Traceback (most recent call last):
+  File "/home/ahrilab/Desktop/ViTfromScratch/train.py", line 79, in <module>
+    main()
+  File "/home/ahrilab/Desktop/ViTfromScratch/train.py", line 75, in main
+    train()
+  File "/home/ahrilab/Desktop/ViTfromScratch/train.py", line 62, in train
+    running_loss += loss.item()
+KeyboardInterrupt

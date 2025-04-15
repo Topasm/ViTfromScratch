@@ -11,19 +11,19 @@ class EncoderMLP(nn.Module):
 
     The MLP contains two layers with a GELU non-linearity
 
-    mlp size is 3072 in 5p table 1"""
+    mlp size is 3072 in 5p table 1 768*4 =3072"""
 
-    def __init__(self, inputdim, hiddendim):
+    def __init__(self, inputdim):
         super().__init__()
-        self.mlp = nn.Sequential(nn.Linear(inputdim, hiddendim),
+        self.mlp = nn.Sequential(nn.Linear(inputdim, 4*inputdim),
                                  nn.GELU(),
-                                 nn.Linear(hiddendim, hiddendim),
-                                 nn.GELU())
+                                 nn.Linear(4*inputdim, inputdim))
 
     def forward(self, x):
         x = self.mlp(x)
 
         return x
+# -> ok
 
 
 class ClassificationHeadMLP(nn.Module):
@@ -40,32 +40,32 @@ in the single hidden layer."""
         super().__init__()
         self.mlp = nn.Sequential(nn.Linear(inputdim, inputdim),
                                  nn.Tanh(),
-                                 nn.Linear(inputdim, outdim),)
+                                 nn.Linear(inputdim, outdim))
 
     def forward(self, x):
         x = self.mlp(x)
         return x
+# -> ok
 
+# class SA(nn.Module):
+#     "sa example"
 
-class SA(nn.Module):
-    "sa example"
+#     def __init__(self, input):
+#         super().__init__()
+#         self.U_qkv = nn.Linear(input, 3*input)
 
-    def __init__(self, input):
-        super().__init__()
-        self.U_qkv = nn.Linear(input, 3*input)
+#     def forward(self, x):
 
-    def forward(self, x):
+#         B, N, D = x.shape
 
-        B, N, D = x.shape
+#         qkv = self.U_qkv(x)
+#         q, k, v = qkv.chunk(3, dim=-1)
 
-        qkv = self.U_qkv(x)
-        q, k, v = qkv.chunk(3, dim=-1)
+#         Attention = F.softmax(q @ k.transpose(-2, -1) / (D**0.5))
 
-        Attention = F.softmax(q @ k.transpose(-2, -1) / (D**0.5))
+#         SAout = Attention@v
 
-        SAout = Attention@v
-
-        return SAout
+#         return SAout
 
 
 class MultiheadAttention(nn.Module):
@@ -107,6 +107,7 @@ parameters constant when changing k, Dh (Eq. 5) is typically set to D/k."""
         MHAout = self.output_proj(MHAout)
 
         return MHAout
+# -> ok
 
 
 class TransformerEncoder(nn.Module):
@@ -134,6 +135,7 @@ every block, and residual connections after every block """
         x_out = x_out + x_update
 
         return x_out
+# -> ok
 
 
 class PatchEmbedding(nn.Module):
@@ -160,3 +162,4 @@ the output of this projection as the patch embeddings"""
         out = rearrange(patch, 'b d ph pw -> b (ph pw) d')
 
         return out
+# -> ok
