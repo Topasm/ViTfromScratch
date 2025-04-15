@@ -64,7 +64,10 @@ class SA(nn.Module):
 
 
 class MultiheadAttention(nn.Module):
-    """ multihead Attention"""
+    """ multihead Attention
+    k self-attention operations,
+called “heads”, in parallel, and project their concatenated outputs. To keep compute and number of
+parameters constant when changing k, Dh (Eq. 5) is typically set to D/k."""
 
     def __init__(self, embedded_dim, num_head):
         super().__init__()
@@ -81,13 +84,20 @@ class MultiheadAttention(nn.Module):
 
         B, N, D = x.shape
 
-        q = self.q_proj(x)
-        k = self.k_proj(x)
-        v = self.v_proj(x)
+        Dh = D // self.num_head
 
-        Attention = F.softmax(q @ k.transpose(-2, -1) / (D**0.5))
+        q = self.q_proj(x)
+        q = rearrange(q, 'b n (h d) -> b h n d', h=self.num_head)
+        k = self.k_proj(x)
+        k = rearrange(k, 'b n (h d) -> b h n d', h=self.num_head)
+        v = self.v_proj(x)
+        v = rearrange(v, 'b n (h d) -> b h n d', h=self.num_head)
+
+        Attention = F.softmax(q @ k.transpose(-2, -1) / (Dh**0.5), dim=1)
 
         MHAout = Attention@v
+
+        MHAout = rearrange(MHAout, 'b h n d-> b n (h d)')
 
         MHAout = self.output_proj(MHAout)
 
