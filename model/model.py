@@ -26,7 +26,7 @@ class Vit(nn.Module):
     def forward(self, x):
 
         x = self.patch_embedding(x)
-
+        # TODO fix RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 1024 but got size 1 for tensor number 1 in the list.
         x_cls = torch.concat([x, self.cls], dim=1)
 
         x_pose = x_cls + self.pose_embedding

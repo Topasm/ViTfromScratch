@@ -31,9 +31,8 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
 def train():
 
     configs = {
-        "image_size": 224,
         "patch_size": 16,
-        "num_classes": 10}
+        "num_class": 10}
 
     model = Vit(**configs).to(device)
     criterion = nn.CrossEntropyLoss()
