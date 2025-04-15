@@ -98,7 +98,7 @@ parameters constant when changing k, Dh (Eq. 5) is typically set to D/k."""
         v = self.v_proj(x)
         v = rearrange(v, 'b n (h d) -> b h n d', h=self.num_head)
 
-        Attention = F.softmax(q @ k.transpose(-2, -1) / (Dh**0.5), dim=1)
+        Attention = F.softmax(q @ k.transpose(-2, -1) / (Dh**0.5), dim=-1)
 
         MHAout = Attention@v
 

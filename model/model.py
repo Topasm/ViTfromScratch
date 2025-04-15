@@ -37,8 +37,11 @@ class Vit(nn.Module):
         # torch.Size([1024, 197, 768])
 
         B, T, E = cls_token.shape
+        """Similar to BERT’s [class] token, we prepend a learnable embedding to the sequence of embedded patches (z0
+0 = xclass), whose state at the output of the Transformer encoder (z0
+L)"""
 
-        x_cls = torch.cat([x, cls_token], dim=1)
+        x_cls = torch.cat([cls_token, x], dim=1)
 
         pose_embed = self.pose_embedding(torch.arange(0, T, device=x.device))
 
@@ -46,6 +49,6 @@ class Vit(nn.Module):
 
         x_t_out = self.Transformer(x_pose)
 
-        cls_ouput = x_t_out[:, -1]
+        cls_ouput = x_t_out[:, 0]
         out = self.MLP_Head(cls_ouput)
         return out

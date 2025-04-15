@@ -4,7 +4,7 @@ from torch.optim import Adam
 import numpy as np
 from torchvision import transforms, datasets
 from model.model import Vit
-
+import wandb
 
 device = "cuda"
 path = './cifar_vit.pth'
@@ -17,6 +17,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 batch_size = 256
+total_epoch = 100
 
 trainset = datasets.CIFAR10(root='./data', train=True,
                             download=True, transform=transform)
@@ -27,6 +28,8 @@ testset = datasets.CIFAR10(root='./data', train=False,
                            download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
                                          shuffle=False, num_workers=2)
+
+wandb.init(project="vit_fromscratch")
 
 
 def train():
@@ -43,7 +46,7 @@ def train():
     """We train all models, including ResNets, using Adam (Kingma & Ba,
 2015) with β1 = 0.9, β2 = 0.999, a batch size of 4096 and apply a high weight decay of 0.1, """
 
-    for epoch in range(50):
+    for epoch in range(total_epoch):
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
 
@@ -57,12 +60,15 @@ def train():
             optimizer.step()
 
             running_loss += loss.item()
+            wandb.log({"loss": loss.item(), "epoch": epoch})
 
-            if i % 2000 == 1999:
-                print(f'[epoch +1]')
-                running_loss = 0.0
+        print(
+            f"Epoch [{epoch+1}/{total_epoch} - Loss: {running_loss/len(trainloader)}]")
 
-    torch.save(model.state_dict(), path)
+    if (epoch+1) % 10 == 0:
+
+        torch.save(model.state_dict(), f"./cifar_vit_epoch{epoch+1}.pth")
+    wandb.save(path)
 
 
 def main():
