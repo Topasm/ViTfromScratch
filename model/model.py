@@ -9,9 +9,10 @@ class Vit(nn.Module):
 
     def __init__(self, input_dim=768, num_head=12, num_patch=256, num_class=10):
         super().__init__()
-        self.cls = nn.Parameter(num_patch, num_class)
+        # https://velog.io/@dusruddl2/torch.rand-torch.randn
+        self.cls = nn.Parameter(torch.randn(1, 1, input_dim))
 
-        self.pose_embedding = nn.Embedding(num_patch+1, latent_dim)
+        self.pose_embedding = nn.Embedding(num_patch+1, input_dim)
 
         self.Transformer = nn.Sequential(*[TransformerEncoder(
             input_dim=input_dim, num_head=num_head)
