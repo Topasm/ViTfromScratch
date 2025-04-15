@@ -46,6 +46,6 @@ class Vit(nn.Module):
 
         x_t_out = self.Transformer(x_pose)
 
-        cls_ouput = x[:-1]
+        cls_ouput = x_t_out[:, -1]
         out = self.MLP_Head(cls_ouput)
         return out
