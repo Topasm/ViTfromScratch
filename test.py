@@ -29,7 +29,7 @@ testloader = torch.utils.data.DataLoader(
 )
 
 model = Vit().to(device)
-model.load_state_dict(torch.load('./cifar_vit.pth', map_location=device))
+model.load_state_dict(torch.load('cifar_vit_epoch20.pth', map_location=device))
 model.eval()
 
 
