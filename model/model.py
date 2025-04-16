@@ -7,7 +7,7 @@ class Vit(nn.Module):
 
     """ViT-Base Layer 12  Hidden size 768 MLP 3072 Head 12 86M"""
 
-    def __init__(self, input_dim=768, num_head=12, num_patch=196, num_class=10, patch_size=16):
+    def __init__(self, input_dim=768, num_head=12, num_patch=64, num_class=10, patch_size=4):
         super().__init__()
 
         self.patch_embedding = PatchEmbedding(

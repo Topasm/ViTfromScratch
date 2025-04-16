@@ -12,7 +12,6 @@ path = './cifar_vit.pth'
 "https://tutorials.pytorch.kr/beginner/basics/data_tutorial.html"
 "https://tutorials.pytorch.kr/beginner/blitz/cifar10_tutorial.html"
 transform = transforms.Compose([
-    transforms.Resize(224, interpolation=2),
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
@@ -35,7 +34,7 @@ wandb.init(project="vit_fromscratch")
 def train():
 
     configs = {
-        "patch_size": 16,
+        "patch_size": 4,
         "num_class": 10}
 
     model = Vit(**configs).to(device)
