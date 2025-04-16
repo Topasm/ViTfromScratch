@@ -17,7 +17,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 batch_size = 256
-total_epoch = 100
+total_epoch = 200
 
 trainset = datasets.CIFAR10(root='./data', train=True,
                             download=True, transform=transform)
@@ -40,7 +40,7 @@ def train():
 
     model = Vit(**configs).to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = Adam(model.parameters(), lr=2e-4,
+    optimizer = Adam(model.parameters(), lr=1e-3,
                      betas=(0.9, 0.999), weight_decay=0.1)
 
     """We train all models, including ResNets, using Adam (Kingma & Ba,
@@ -65,10 +65,9 @@ def train():
         print(
             f"Epoch [{epoch+1}/{total_epoch} - Loss: {running_loss/len(trainloader)}]")
 
-    if (epoch+1) % 10 == 0:
-
-        torch.save(model.state_dict(), f"./cifar_vit_epoch{epoch+1}.pth")
-    wandb.save(path)
+        if (epoch+1) % 10 == 0:
+            torch.save(model.state_dict(), f"./cifar_vit_epoch{epoch+1}.pth")
+        wandb.save(path)
 
 
 def main():
