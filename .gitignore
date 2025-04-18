@@ -2,4 +2,4 @@
 /data/*
 cifar_vit.pth
 wandb/*
-*.pth
+/checkpoints
